@@ -8,7 +8,13 @@
     "node": "~6.10"
   },
   "scripts": {
-    "test": "echo TODO"
+    "prettify": "prettier --write '**/*.ts'",
+    "lint": "check-node-version --package && tsc --noEmit --project . && prettier --list-different '**/*.ts' && echo lint OK",
+    "lint-watch": "chokidar '**/*.ts' --ignore node_modules --debounce 100 --initial --command 'npm run --silent lint'",
+    "test": "check-node-version --package && mocha --require ts-node/register $(npm run --silent test-list)",
+    "test-watch": "mocha --require ts-node/register --watch --watch-extensions ts $(npm run --silent test-list)",
+    "test-list": "find . -name '*.spec.ts' -not -path './node_modules/*'",
+    "precommit": "npm run lint && npm test"
   },
   "repository": {
     "type": "git",
