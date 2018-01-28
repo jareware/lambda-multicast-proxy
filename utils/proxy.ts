@@ -24,7 +24,6 @@ export function proxyRequest(
           url: outgoingUrl,
           method: incomingRequest.requestMethod,
           data: incomingRequest.requestBody,
-          params: incomingRequest.requestParams,
           headers: filterHeaders(
             {
               'X-Request-ID': incomingRequest.requestId,

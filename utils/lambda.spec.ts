@@ -42,8 +42,7 @@ describe('utils/lambda', () => {
       assert.deepEqual(normalizeIncomingRequest(SAMPLE_EVENT), {
         requestId: '62c362a2-f949-11e7-907f-bf2bff7069b0',
         requestMethod: 'POST',
-        requestPath: '/test/request',
-        requestParams: { foo: 'bar' },
+        requestPath: '/test/request?foo=bar',
         requestHeaders: {
           'Content-Type': 'text/plain',
           'User-Agent': 'Amazon CloudFront',

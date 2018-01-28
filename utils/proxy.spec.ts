@@ -1,14 +1,14 @@
 import 'mocha';
 import { assert } from 'chai';
 import { proxyRequest, DEFAULT_TIMEOUT } from './proxy';
+import { IncomingRequest } from './lambda';
 
 describe('utils/proxy', () => {
   describe('proxyRequest()', () => {
-    const SAMPLE_REQUEST = {
+    const SAMPLE_REQUEST: IncomingRequest = {
       requestId: '62c362a2-f949-11e7-907f-bf2bff7069b0',
       requestMethod: 'POST',
       requestPath: '/test/request',
-      requestParams: { foo: 'bar' },
       requestHeaders: {
         'Accept-Encoding': 'gzip, deflate',
         'Cache-Control': 'no-cache',
@@ -52,9 +52,6 @@ describe('utils/proxy', () => {
               'User-Agent': 'Amazon CloudFront',
               'X-Request-ID': '62c362a2-f949-11e7-907f-bf2bff7069b0',
             },
-            params: {
-              foo: 'bar',
-            },
             timeout: DEFAULT_TIMEOUT,
           },
           {
@@ -65,9 +62,6 @@ describe('utils/proxy', () => {
               'Content-Type': 'text/plain',
               'User-Agent': 'Amazon CloudFront',
               'X-Request-ID': '62c362a2-f949-11e7-907f-bf2bff7069b0',
-            },
-            params: {
-              foo: 'bar',
             },
             timeout: DEFAULT_TIMEOUT,
           },
