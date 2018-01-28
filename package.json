@@ -1,0 +1,19 @@
+{
+  "name": "lambda-multicast",
+  "version": "1.0.0",
+  "description": "Proxy a single request to multiple destinations using AWS Lambda",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo TODO"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jareware/lambda-multicast.git"
+  },
+  "author": "Jarno Rantanen <jarno@jrw.fi>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jareware/lambda-multicast/issues"
+  },
+  "homepage": "https://github.com/jareware/lambda-multicast#readme"
+}
