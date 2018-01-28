@@ -19,5 +19,21 @@
   "bugs": {
     "url": "https://github.com/jareware/lambda-multicast/issues"
   },
-  "homepage": "https://github.com/jareware/lambda-multicast#readme"
+  "homepage": "https://github.com/jareware/lambda-multicast#readme",
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.34",
+    "axios": "^0.17.1",
+    "browserify": "^15.1.0",
+    "chai": "^4.1.2",
+    "check-node-version": "^3.1.1",
+    "chokidar-cli": "^1.2.0",
+    "husky": "^0.14.3",
+    "mocha": "^4.0.1",
+    "prettier": "^1.10.2",
+    "ts-node": "^3.3.0",
+    "tsify": "^3.0.4",
+    "typescript": "^2.6.2"
+  }
 }
