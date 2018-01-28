@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Proxy a single request to multiple destinations using AWS Lambda",
   "main": "index.js",
+  "engines": {
+    "npm": "~3.10",
+    "node": "~6.10"
+  },
   "scripts": {
     "test": "echo TODO"
   },
