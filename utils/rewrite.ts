@@ -1,6 +1,6 @@
-export interface RewriteConfig {
-  [incomingUrlPattern: string]: string[];
-}
+import { Config } from './config';
+
+type RewriteConfig = Config['rewriteConfig'];
 
 export function rewriteIncomingUrl(
   config: RewriteConfig,
