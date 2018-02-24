@@ -1,5 +1,5 @@
 {
-  "name": "lambda-multicast",
+  "name": "lambda-multicast-proxy",
   "version": "1.0.0",
   "description": "Proxy a single request to multiple destinations using AWS Lambda",
   "main": "index.js",

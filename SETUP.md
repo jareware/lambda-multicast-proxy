@@ -1,4 +1,4 @@
-# lambda-multicast setup
+# lambda-multicast-proxy setup
 
 ## 1. Setting up Lambda
 
@@ -8,7 +8,7 @@ Create a new Lambda function; assuming we'll call it `MyLambdaProxy`:
 
 If you know what you're doing, you can of course add more finer grained permissions here.
 
-Add function code by uploading a ZIP file of the [latest release](https://github.com/jareware/lambda-multicast):
+Add function code by uploading a ZIP file of the [latest release](https://github.com/jareware/lambda-multicast-proxy):
 
 ![lambda-02](doc/lambda-02.png)
 
@@ -18,14 +18,14 @@ and press the Save button.
 
 First, [set up your AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) and ensure you're authenticated.
 
-Create a configuration file and save it as `lambda-multicast-config.js`:
+Create a configuration file and save it as `lambda-multicast-proxy-config.js`:
 
 ```js
 // This config file is designed to be compatible with the official AWS CLI:
 // $ aws lambda update-function-configuration \
 //     --function-name MyLambdaFunction \
-//     --environment $(node -p 'require("./lambda-multicast-config")')
-// For more information, see: https://github.com/jareware/lambda-multicast
+//     --environment $(node -p 'require("./lambda-multicast-proxy-config")')
+// For more information, see: https://github.com/jareware/lambda-multicast-proxy
 module.exports = JSON.stringify({
   Variables: {
     LAMBDA_MULTICAST_CONFIG: JSON.stringify({
@@ -68,7 +68,7 @@ Then, update that config into the Lambda:
 ```
 aws lambda update-function-configuration \
   --function-name MyLambdaProxy \
-  --environment $(node -p 'require("./lambda-multicast-config")')
+  --environment $(node -p 'require("./lambda-multicast-proxy-config")')
 ```
 
 It's probably a good idea to commit the config file into version control.

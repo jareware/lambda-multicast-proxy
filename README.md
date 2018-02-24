@@ -1,4 +1,4 @@
-![lambda-multicast](lambda-multicast.png)
+![lambda-multicast-proxy](lambda-multicast-proxy.png)
 
 Use AWS Lambda to proxy requests to one **or more** upstream endpoints.
 
@@ -60,7 +60,7 @@ Whenever you've made changes to the configuration, you can update it with the of
 ```
 $ aws lambda update-function-configuration \
     --function-name MyLambdaFunction \
-    --environment $(node -p 'require("./lambda-multicast-config")')
+    --environment $(node -p 'require("./lambda-multicast-proxy-config")')
 ```
 
 ## Acknowledgements

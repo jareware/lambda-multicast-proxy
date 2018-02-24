@@ -1,5 +1,5 @@
 {
-  "name": "lambda-multicast",
+  "name": "lambda-multicast-proxy",
   "version": "1.0.0",
   "dependencies": {
     "@browserify/acorn5-object-spread": {
