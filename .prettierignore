@@ -1,4 +1,4 @@
 .history
-package.json
+*.json
 *.js
 *.md
