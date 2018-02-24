@@ -1,5 +1,6 @@
 import { stringify } from 'querystring';
 import { ProxyResponse, filterHeaders } from './proxy';
+import { Config } from './config';
 
 export interface Headers {
   [header: string]: string;
@@ -40,11 +41,14 @@ export function normalizeIncomingRequest(event: any): IncomingRequest {
   };
 }
 
-export function responseToLambda(primary: ProxyResponse): LambdaResponse {
+export function responseToLambda(
+  primary: ProxyResponse,
+  config: Config,
+): LambdaResponse {
   return {
     statusCode: primary.status,
     body: primary.data,
     isBase64Encoded: false,
-    headers: filterHeaders(primary.headers, ['content-type']),
+    headers: filterHeaders(primary.headers, config.proxiedOutgoingHeaders),
   };
 }

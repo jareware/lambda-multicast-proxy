@@ -31,7 +31,7 @@ lambda.handler = (event, context, callback) => {
     res => {
       if (urls.length) {
         // there was at least one proxy request generated
-        const outgoing = responseToLambda(res[urls[0]]);
+        const outgoing = responseToLambda(res[urls[0]], config);
         logProxiedRequest(urls, log, request, res, outgoing);
         callback(null, outgoing);
       } else {
