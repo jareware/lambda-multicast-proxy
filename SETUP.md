@@ -39,7 +39,7 @@ module.exports = JSON.stringify({
       // When a regex in the key matches, the request will be proxied to the specified list of URL's:
       rewriteConfig: {
         '^/api/hello/(.*)': [
-          'https://api.github.com/search/users?q=$1',
+          'https://api.github.com/search/users?q=$1', // first entry is always the primary
           'https://api.twitter.com/1.1/users/search.json?q=$1&page=1&count=3',
         ],
       },
