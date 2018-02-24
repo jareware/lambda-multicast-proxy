@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jareware/lambda-multicast.git"
+    "url": "git+https://github.com/jareware/lambda-multicast-proxy.git"
   },
   "author": "Jarno Rantanen <jarno@jrw.fi>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jareware/lambda-multicast/issues"
+    "url": "https://github.com/jareware/lambda-multicast-proxy/issues"
   },
-  "homepage": "https://github.com/jareware/lambda-multicast#readme",
+  "homepage": "https://github.com/jareware/lambda-multicast-proxy#readme",
   "devDependencies": {
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.43",

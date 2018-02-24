@@ -30,7 +30,7 @@ Follow the [initial setup instructions](SETUP.md) to get your AWS environment se
 As part of that initial setup, you'll create a configuration file like this one:
 
 ```js
-// https://github.com/jareware/lambda-multicast
+// https://github.com/jareware/lambda-multicast-proxy
 module.exports = JSON.stringify({
   Variables: {
     LAMBDA_MULTICAST_CONFIG: JSON.stringify({
