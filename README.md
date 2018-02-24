@@ -6,9 +6,9 @@ Use AWS Lambda to proxy requests to one **or more** upstream endpoints.
 
 There's several use cases for this simple multicast proxy. It can:
 
-1. Duplicate data input, so that when a client uploads a value, it's sent both to the production backend and the development one, so you get to play around with live data but in a safe environment.
-1. Load test a shadow copy of an API endpoint; every request is sent both to the production version and the shadow copy. This allows you to safely determine whether it could take the realistic live load, before actually rolling anything out. Responses from the shadow copy are ignored, and the client only gets the production responses.
-1. Act as a simple HTTP routing layer in front of your microservices, to support a [blue-green deployment pattern](https://martinfowler.com/bliki/BlueGreenDeployment.html) for example (this doesn't really make use of the multicast feature, though).
+1. **Duplicate data input**, so that when a client uploads a value, it's sent both to the production backend and the development one, so you get to play around with live data but in a safe environment.
+1. **Load test a shadow copy** of an API endpoint; every request is sent both to the production version and the shadow copy. This allows you to safely determine whether it could take the realistic live load, before actually rolling anything out. Responses from the shadow copy are ignored, and the client only gets the production responses.
+1. **Act as a simple HTTP routing layer** in front of your microservices, to support a [blue-green deployment pattern](https://martinfowler.com/bliki/BlueGreenDeployment.html) for example (this doesn't really make use of the multicast feature, though).
 
 # How?
 
