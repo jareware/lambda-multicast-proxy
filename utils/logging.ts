@@ -1,3 +1,6 @@
+import { IncomingRequest, LambdaResponse } from './lambda';
+import { ProxyResponseMap, filterHeaders } from './proxy';
+
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type LoggerMethod = (message: string, meta?: any) => void;
 export type Logger = { [level in LogLevel]: LoggerMethod };
@@ -28,4 +31,30 @@ function level(level: LogLevel | null): number {
   if (level === 'error') return 4;
   if (level === null) return Infinity;
   return ((_: never) => {})(level) as any; // assert exhaustiveness
+}
+
+export function logProxiedRequest(
+  urls: string[],
+  log: Logger,
+  request: IncomingRequest,
+  res: ProxyResponseMap,
+  outgoing?: LambdaResponse,
+) {
+  if (urls.length) {
+    urls.forEach(url => {
+      log.info(
+        `${request.requestMethod} ${request.requestPath} => ${url} => ${res[url]
+          .status || ''} ${res[url].statusText}`,
+      );
+    });
+  } else {
+    log.info(`${request.requestMethod} ${request.requestPath} => NO-OP`);
+  }
+  log.debug('Proxied request:', {
+    incoming: request.requestPath,
+    outgoing: res,
+  });
+  if (outgoing) {
+    log.debug('Outgoing response:', { outgoing });
+  }
 }

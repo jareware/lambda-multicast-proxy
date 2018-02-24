@@ -10,13 +10,17 @@ export interface ProxyResponse {
   headers: Headers;
 }
 
+export interface ProxyResponseMap {
+  [outgoingUrl: string]: ProxyResponse;
+}
+
 export function proxyRequest(
   incomingRequest: IncomingRequest,
   outgoingUrls: string[],
   proxiedHeaders: string[] = [],
   timeoutAfter: number = DEFAULT_TIMEOUT,
   axiosOverride: AxiosInstance = axios,
-): Promise<{ [outgoingUrl: string]: ProxyResponse }> {
+): Promise<ProxyResponseMap> {
   return Promise.all(
     outgoingUrls.map(outgoingUrl =>
       axiosOverride

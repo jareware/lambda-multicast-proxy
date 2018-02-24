@@ -1,6 +1,6 @@
 declare var lambda: LambdaHandlers;
 
-import { createConsoleLogger } from './utils/logging';
+import { createConsoleLogger, logProxiedRequest } from './utils/logging';
 import { parseConfig } from './utils/config';
 import { normalizeIncomingRequest, LambdaHandlers } from './utils/lambda';
 import { rewriteIncomingUrl } from './utils/rewrite';
@@ -26,21 +26,7 @@ lambda.handler = (event, context, callback) => {
   ).then(
     res => {
       if (urls.length) {
-        urls.forEach(url => {
-          log.info(
-            `${request.requestMethod} ${request.requestPath} => ${url} => ${res[
-              url
-            ].status || ''} ${res[url].statusText}`,
-          );
-        });
-      } else {
-        log.info(`${request.requestMethod} ${request.requestPath} => NO-OP`);
-      }
-      log.debug('Proxied request:', {
-        incoming: request.requestPath,
-        outgoing: res,
-      });
-      if (urls.length) {
+        // there was at least one proxy request generated
         const primary = res[urls[0]];
         const outgoing = {
           statusCode: primary.status,
@@ -48,9 +34,11 @@ lambda.handler = (event, context, callback) => {
           isBase64Encoded: false,
           headers: filterHeaders(primary.headers, ['content-type']),
         };
-        log.debug('Outgoing response:', { outgoing });
+        logProxiedRequest(urls, log, request, res, outgoing);
         callback(null, outgoing);
       } else {
+        // no rewrite config matched
+        logProxiedRequest(urls, log, request, res);
         callback(null, { statusCode: 200 });
       }
     },
