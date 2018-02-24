@@ -12,6 +12,21 @@ export interface IncomingRequest {
   requestBody: object | string;
 }
 
+export interface LambdaResponse {
+  statusCode: number;
+  body?: string;
+  isBase64Encoded?: boolean;
+  headers?: Headers;
+}
+
+export interface LambdaHandlers {
+  handler: (
+    event: any,
+    context: any,
+    callback: (error: Error | null, response: LambdaResponse) => void,
+  ) => void;
+}
+
 // Note: This assumes a request pipeline of CloudFront -> API Gateway -> Lambda
 export function normalizeIncomingRequest(event: any): IncomingRequest {
   const query = stringify(event.queryStringParameters);

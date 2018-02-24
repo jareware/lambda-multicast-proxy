@@ -1,8 +1,8 @@
-declare var lambda: any;
+declare var lambda: LambdaHandlers;
 
 import { createConsoleLogger } from './utils/logging';
 import { parseConfig } from './utils/config';
-import { normalizeIncomingRequest } from './utils/lambda';
+import { normalizeIncomingRequest, LambdaHandlers } from './utils/lambda';
 import { rewriteIncomingUrl } from './utils/rewrite';
 import { proxyRequest, filterHeaders } from './utils/proxy';
 
@@ -12,7 +12,7 @@ const config = parseConfig(process.env.LAMBDA_MULTICAST_CONFIG);
 log.info('Lambda Multicast instance started');
 log.debug('Configuration and environment are:', { config, env: process.env });
 
-lambda.handler = (event: any, context: any, callback: any) => {
+lambda.handler = (event, context, callback) => {
   log.debug('Incoming request:', { event, context });
 
   const request = normalizeIncomingRequest(event);
