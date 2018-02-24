@@ -10,6 +10,19 @@ There's several use cases for this simple multicast proxy. It can:
 1. **Load test a shadow copy** of an API endpoint; every request is sent both to the production version and the shadow copy. This allows you to safely determine whether it could take the realistic live load, before actually rolling anything out. Responses from the shadow copy are ignored, and the client only gets the production responses.
 1. **Act as a simple HTTP routing layer** in front of your microservices, to support a [blue-green deployment pattern](https://martinfowler.com/bliki/BlueGreenDeployment.html) for example (this doesn't really make use of the multicast feature, though).
 
+# What?
+
+With a simple config file ([see below](#how)), you can create a Lambda function that takes a request like:
+
+    GET https://my-lambda-proxy.com/api/hello/jareware
+
+and rewrites it into these two requests:
+
+    GET https://api.github.com/search/users?q=jareware
+    GET https://api.twitter.com/1.1/users/search.json?q=jareware&page=1&count=3
+
+where the first one is the primary, and the secondary is the shadow copy, whose response will be ignored.
+
 # How?
 
 Follow the [initial setup instructions](SETUP.md) to get your AWS environment set up.
