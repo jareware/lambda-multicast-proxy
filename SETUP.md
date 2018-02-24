@@ -8,7 +8,7 @@ Create a new Lambda function; assuming we'll call it `MyLambdaProxy`:
 
 If you know what you're doing, you can of course add more finer grained permissions here.
 
-Add function code by uploading a ZIP file of the [latest release](https://github.com/jareware/lambda-multicast-proxy):
+Add function code by uploading a ZIP file of the [latest release](https://github.com/jareware/lambda-multicast-proxy/releases):
 
 ![lambda-02](doc/lambda-02.png)
 
