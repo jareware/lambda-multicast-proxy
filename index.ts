@@ -2,9 +2,13 @@ declare var lambda: LambdaHandlers;
 
 import { createConsoleLogger, logProxiedRequest } from './utils/logging';
 import { parseConfig } from './utils/config';
-import { normalizeIncomingRequest, LambdaHandlers } from './utils/lambda';
+import {
+  normalizeIncomingRequest,
+  LambdaHandlers,
+  responseToLambda,
+} from './utils/lambda';
 import { rewriteIncomingUrl } from './utils/rewrite';
-import { proxyRequest, filterHeaders } from './utils/proxy';
+import { proxyRequest } from './utils/proxy';
 
 const log = createConsoleLogger();
 const config = parseConfig(process.env.LAMBDA_MULTICAST_CONFIG);
@@ -27,13 +31,7 @@ lambda.handler = (event, context, callback) => {
     res => {
       if (urls.length) {
         // there was at least one proxy request generated
-        const primary = res[urls[0]];
-        const outgoing = {
-          statusCode: primary.status,
-          body: primary.data,
-          isBase64Encoded: false,
-          headers: filterHeaders(primary.headers, ['content-type']),
-        };
+        const outgoing = responseToLambda(res[urls[0]]);
         logProxiedRequest(urls, log, request, res, outgoing);
         callback(null, outgoing);
       } else {

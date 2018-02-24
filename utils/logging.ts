@@ -1,5 +1,5 @@
 import { IncomingRequest, LambdaResponse } from './lambda';
-import { ProxyResponseMap, filterHeaders } from './proxy';
+import { ProxyResponseMap } from './proxy';
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type LoggerMethod = (message: string, meta?: any) => void;

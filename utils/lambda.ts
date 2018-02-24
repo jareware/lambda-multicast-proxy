@@ -1,4 +1,5 @@
 import { stringify } from 'querystring';
+import { ProxyResponse, filterHeaders } from './proxy';
 
 export interface Headers {
   [header: string]: string;
@@ -36,5 +37,14 @@ export function normalizeIncomingRequest(event: any): IncomingRequest {
     requestPath: event.path + (query ? `?${query}` : ''),
     requestHeaders: event.headers || {},
     requestBody: event.body,
+  };
+}
+
+export function responseToLambda(primary: ProxyResponse): LambdaResponse {
+  return {
+    statusCode: primary.status,
+    body: primary.data,
+    isBase64Encoded: false,
+    headers: filterHeaders(primary.headers, ['content-type']),
   };
 }
