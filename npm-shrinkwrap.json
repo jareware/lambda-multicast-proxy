@@ -1909,6 +1909,12 @@
       "resolved": "https://registry.npmjs.org/pako/-/pako-1.0.6.tgz",
       "dev": true
     },
+    "parallel": {
+      "version": "1.2.0",
+      "from": "parallel@latest",
+      "resolved": "https://registry.npmjs.org/parallel/-/parallel-1.2.0.tgz",
+      "dev": true
+    },
     "parents": {
       "version": "1.0.1",
       "from": "parents@>=1.0.1 <2.0.0",

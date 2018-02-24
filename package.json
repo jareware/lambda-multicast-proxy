@@ -9,12 +9,15 @@
   },
   "scripts": {
     "prettify": "prettier --write '**/*.ts'",
-    "lint": "check-node-version --package && tsc --noEmit --project . && prettier --list-different '**/*.ts' && echo lint OK",
+    "lint": "npm run lint-versions && npm run lint-ts && npm run lint-prettier && echo lint OK",
+    "lint-versions": "check-node-version --package",
+    "lint-ts": "tsc --noEmit --project .",
+    "lint-prettier": "prettier --list-different '**/*.ts'",
     "lint-watch": "chokidar '**/*.ts' --ignore node_modules --debounce 100 --initial --command 'npm run --silent lint'",
     "test": "check-node-version --package && mocha --require ts-node/register $(npm run --silent test-list)",
     "test-watch": "mocha --require ts-node/register --watch --watch-extensions ts $(npm run --silent test-list)",
     "test-list": "find . -name '*.spec.ts' -not -path './node_modules/*'",
-    "precommit": "npm run lint && npm test"
+    "precommit": "echo test lint-versions lint-ts lint-prettier | parallel --delimiter ' ' --trim npm run --silent {}"
   },
   "repository": {
     "type": "git",
@@ -40,6 +43,7 @@
     "prettier": "^1.10.2",
     "ts-node": "^3.3.0",
     "tsify": "^3.0.4",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "parallel": "^1.2.0"
   }
 }
