@@ -47,7 +47,10 @@ export function responseToLambda(
 ): LambdaResponse {
   return {
     statusCode: primary.status,
-    body: primary.data,
+    body:
+      typeof primary.data === 'string'
+        ? primary.data
+        : JSON.stringify(primary.data),
     isBase64Encoded: false,
     headers: filterHeaders(primary.headers, config.proxiedOutgoingHeaders),
   };
