@@ -17,7 +17,8 @@
     "test": "check-node-version --package && mocha --require ts-node/register $(npm run --silent test-list)",
     "test-watch": "mocha --require ts-node/register --watch --watch-extensions ts $(npm run --silent test-list)",
     "test-list": "find . -name '*.spec.ts' -not -path './node_modules/*'",
-    "precommit": "echo test lint-versions lint-ts lint-prettier | parallel --delimiter ' ' --trim npm run --silent {}"
+    "precommit": "echo test lint-versions lint-ts lint-prettier | parallel --delimiter ' ' --trim npm run --silent {}",
+    "build": "echo 'var lambda = exports;' > index.js && ./node_modules/.bin/browserify -p tsify --node index.ts >> index.js && zip lambda.zip index.js"
   },
   "repository": {
     "type": "git",
