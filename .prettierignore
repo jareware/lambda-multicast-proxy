@@ -1,2 +1,4 @@
 .history
 package.json
+*.js
+*.md
