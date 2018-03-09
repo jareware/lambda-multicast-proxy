@@ -14,7 +14,8 @@ const log = createConsoleLogger();
 const config = parseConfig(process.env.LAMBDA_MULTICAST_CONFIG);
 
 log.info('Lambda Multicast instance started');
-log.debug('Configuration and environment are:', { config, env: process.env });
+log.debug('Current config:', config);
+log.debug('Current env:', process.env);
 
 lambda.handler = (event, context, callback) => {
   log.debug('Incoming request:', { event, context });
