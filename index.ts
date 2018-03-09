@@ -8,7 +8,7 @@ import {
   responseToLambda,
 } from './utils/lambda';
 import { rewriteIncomingUrl } from './utils/rewrite';
-import { proxyRequest } from './utils/proxy';
+import { proxyRequest, NO_CACHING } from './utils/proxy';
 
 const log = createConsoleLogger();
 const config = parseConfig(process.env.LAMBDA_MULTICAST_CONFIG);
@@ -37,12 +37,15 @@ lambda.handler = (event, context, callback) => {
       } else {
         // no rewrite config matched
         logProxiedRequest(urls, log, request, res);
-        callback(null, { statusCode: 200 });
+        callback(null, {
+          statusCode: 200,
+          headers: NO_CACHING,
+        });
       }
     },
     err => {
       log.warn('Proxying request failed', err);
-      callback(null, { statusCode: 500 });
+      callback(null, { statusCode: 500, headers: NO_CACHING });
     },
   );
 };

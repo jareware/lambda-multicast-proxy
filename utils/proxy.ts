@@ -2,6 +2,10 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { IncomingRequest, Headers } from './lambda';
 
 export const DEFAULT_TIMEOUT = 10000;
+export const NO_CACHING = {
+  'Cache-Control': 'no-cache, no-store, must-revalidate',
+  Pragma: 'no-cache',
+};
 
 export interface ProxyResponse {
   data: any;
