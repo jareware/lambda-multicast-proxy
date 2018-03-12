@@ -13,7 +13,7 @@ import { proxyRequest, NO_CACHING } from './utils/proxy';
 const log = createConsoleLogger();
 const config = parseConfig(process.env.LAMBDA_MULTICAST_CONFIG);
 
-log.info('Lambda Multicast instance started');
+log.info('Lambda Multicast Proxy started');
 log.debug('Current config:', config);
 log.debug('Current env:', process.env);
 
