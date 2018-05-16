@@ -6,6 +6,7 @@ import { inspect } from 'util';
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type LoggerMethod = (message: string, meta?: any) => void;
 export type Logger = { [level in LogLevel]: LoggerMethod };
+export type DisposableLogger = Logger & { dispose(): Promise<null> };
 
 export function createConsoleLogger(
   logLevel: LogLevel | null = 'debug',
@@ -67,7 +68,7 @@ export function createPapertrailLogger(
   hostName: string,
   appName: string,
   logLevel: LogLevel | null = 'debug',
-): Logger {
+): DisposableLogger {
   const socket = createPapertrailSocket(papertrailHost, papertrailPort);
   const bind = (currentLevel: LogLevel): LoggerMethod => {
     if (level(currentLevel) < level(logLevel)) return () => {};
@@ -87,6 +88,7 @@ export function createPapertrailLogger(
     info: bind('info'),
     warn: bind('warn'),
     error: bind('error'),
+    dispose: socket.close,
   };
 }
 
