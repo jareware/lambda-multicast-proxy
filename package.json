@@ -4,8 +4,8 @@
   "description": "Proxy a single request to multiple destinations using AWS Lambda",
   "main": "index.js",
   "engines": {
-    "npm": "~3.10",
-    "node": "~6.10"
+    "npm": "5.6.0",
+    "node": "8.10.0"
   },
   "scripts": {
     "prettify": "prettier --write '**/*.ts'",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.34",
+    "@types/node": "^8.10.15",
     "axios": "^0.17.1",
     "browserify": "^15.1.0",
     "chai": "^4.1.2",
