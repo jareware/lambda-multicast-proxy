@@ -2,6 +2,7 @@ import { IncomingRequest, LambdaResponse } from './lambda';
 import { ProxyResponseMap } from './proxy';
 import { connect, TLSSocket } from 'tls';
 import { inspect } from 'util';
+import { Config } from './config';
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 export type LoggerMethod = (message: string, meta?: any) => void;
@@ -192,4 +193,19 @@ function createPapertrailSocket(
       });
     });
   }
+}
+
+export function getRequestLogger(
+  config: Config,
+  requestId: string,
+  fallbackLogger: Logger,
+): Logger {
+  return config.papertrailHost && config.papertrailPort
+    ? createPapertrailLogger(
+        config.papertrailHost,
+        config.papertrailPort,
+        'lambda-multicast-proxy',
+        requestId,
+      )
+    : fallbackLogger;
 }
