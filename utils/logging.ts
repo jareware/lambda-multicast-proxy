@@ -139,7 +139,7 @@ function createPapertrailSocket(
     .then(socket => {
       log.info('Connected to Papertrail');
       socket.setTimeout(60 * 1000);
-      socket.on('timeout', () => socket.write(''));
+      socket.on('timeout', () => socket.write('\n'));
     })
     .catch(err => log.error('Could not connect to Papertrail', err));
 
