@@ -204,7 +204,7 @@ export function getRequestLogger(
     ? createPapertrailLogger(
         config.papertrailHost,
         config.papertrailPort,
-        'lambda-multicast-proxy',
+        config.papertrailHostName || 'lambda-multicast-proxy',
         requestId,
       )
     : fallbackLogger;

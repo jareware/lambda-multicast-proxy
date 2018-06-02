@@ -10,6 +10,7 @@ describe('utils/config', () => {
         logLevel: 'debug',
         papertrailHost: null,
         papertrailPort: null,
+        papertrailHostName: null,
         proxyTimeout: DEFAULT_TIMEOUT,
         rewriteConfig: {},
         proxiedIncomingHeaders: [],
@@ -22,6 +23,7 @@ describe('utils/config', () => {
           logLevel: 'debug',
           papertrailHost: 'hostname',
           papertrailPort: 1337,
+          papertrailHostName: 'MyRouter',
           proxyTimeout: 123,
           rewriteConfig: {
             '^test': ['http://example.com'],
@@ -33,6 +35,7 @@ describe('utils/config', () => {
           logLevel: 'debug',
           papertrailHost: 'hostname',
           papertrailPort: 1337,
+          papertrailHostName: 'MyRouter',
           proxyTimeout: 123,
           rewriteConfig: {
             '^test': ['http://example.com'],
@@ -48,6 +51,7 @@ describe('utils/config', () => {
           logLevel: 123,
           papertrailHost: 1337,
           papertrailPort: 'hostname',
+          papertrailHostName: 123,
           rewriteConfig: {
             '^test': [123],
           },
@@ -58,6 +62,7 @@ describe('utils/config', () => {
           logLevel: 'debug',
           papertrailHost: null,
           papertrailPort: null,
+          papertrailHostName: null,
           proxyTimeout: DEFAULT_TIMEOUT,
           rewriteConfig: {},
           proxiedIncomingHeaders: [],
@@ -77,6 +82,7 @@ describe('utils/config', () => {
           logLevel: 'debug',
           papertrailHost: null,
           papertrailPort: null,
+          papertrailHostName: null,
           proxyTimeout: DEFAULT_TIMEOUT,
           rewriteConfig: {},
           proxiedIncomingHeaders: ['foo'],
