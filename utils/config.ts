@@ -3,6 +3,8 @@ import { DEFAULT_TIMEOUT } from './proxy';
 
 export interface Config {
   logLevel: LogLevel | null;
+  papertrailHost: string | null;
+  papertrailPort: number | null;
   proxyTimeout: number;
   rewriteConfig: {
     [incomingUrlPattern: string]: string[];
@@ -18,6 +20,10 @@ export function parseConfig(rawConfig: any): Config {
     c && (c.logLevel === null || typeof c.logLevel === 'string')
       ? c.logLevel
       : 'debug';
+  const papertrailHost =
+    c && typeof c.papertrailHost === 'string' ? c.papertrailHost : null;
+  const papertrailPort =
+    c && typeof c.papertrailPort === 'number' ? c.papertrailPort : null;
   const proxyTimeout =
     c && typeof c.proxyTimeout === 'number' ? c.proxyTimeout : DEFAULT_TIMEOUT;
   const rewriteConfig =
@@ -55,6 +61,8 @@ export function parseConfig(rawConfig: any): Config {
       : [];
   return {
     logLevel,
+    papertrailHost,
+    papertrailPort,
     proxyTimeout,
     rewriteConfig,
     proxiedIncomingHeaders,

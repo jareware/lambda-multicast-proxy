@@ -8,6 +8,8 @@ describe('utils/config', () => {
     it('returns default config if nothing provided', () => {
       assert.deepEqual(parseConfig(null), {
         logLevel: 'debug',
+        papertrailHost: null,
+        papertrailPort: null,
         proxyTimeout: DEFAULT_TIMEOUT,
         rewriteConfig: {},
         proxiedIncomingHeaders: [],
@@ -18,6 +20,8 @@ describe('utils/config', () => {
       assert.deepEqual(
         parseConfig({
           logLevel: 'debug',
+          papertrailHost: 'hostname',
+          papertrailPort: 1337,
           proxyTimeout: 123,
           rewriteConfig: {
             '^test': ['http://example.com'],
@@ -27,6 +31,8 @@ describe('utils/config', () => {
         }),
         {
           logLevel: 'debug',
+          papertrailHost: 'hostname',
+          papertrailPort: 1337,
           proxyTimeout: 123,
           rewriteConfig: {
             '^test': ['http://example.com'],
@@ -40,6 +46,8 @@ describe('utils/config', () => {
       assert.deepEqual(
         parseConfig({
           logLevel: 123,
+          papertrailHost: 1337,
+          papertrailPort: 'hostname',
           rewriteConfig: {
             '^test': [123],
           },
@@ -48,6 +56,8 @@ describe('utils/config', () => {
         }),
         {
           logLevel: 'debug',
+          papertrailHost: null,
+          papertrailPort: null,
           proxyTimeout: DEFAULT_TIMEOUT,
           rewriteConfig: {},
           proxiedIncomingHeaders: [],
@@ -65,6 +75,8 @@ describe('utils/config', () => {
         ),
         {
           logLevel: 'debug',
+          papertrailHost: null,
+          papertrailPort: null,
           proxyTimeout: DEFAULT_TIMEOUT,
           rewriteConfig: {},
           proxiedIncomingHeaders: ['foo'],
