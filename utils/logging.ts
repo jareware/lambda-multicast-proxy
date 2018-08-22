@@ -47,22 +47,28 @@ export function logProxiedRequest(
   res: ProxyResponseMap,
   outgoing?: LambdaResponse,
 ) {
+  const reqCount = urls.length;
+  const okCount = urls
+    .map(url => res[url].status)
+    .filter(status => status >= 200 && status < 300).length;
+  const nokCount = reqCount - okCount;
+  const destination = `${request.requestMethod} ${request.requestPath}`;
+  log.info(
+    `${destination} => ${okCount}/${reqCount} OK` +
+      (okCount !== reqCount ? ` + ${nokCount} NOT-OK` : ``),
+  );
   if (urls.length) {
     urls.forEach(url => {
-      log.info(
-        `${request.requestMethod} ${request.requestPath} => ${url} => ${res[url]
-          .status || ''} ${res[url].statusText}`,
+      log.debug(
+        `Proxied: ${request.requestMethod} ${url} => ${res[url].status || ''} ${
+          res[url].statusText
+        }`,
+        res[url],
       );
     });
-  } else {
-    log.info(`${request.requestMethod} ${request.requestPath} => NO-OP`);
   }
-  log.debug('Proxied request:', {
-    incoming: request.requestPath,
-    outgoing: res,
-  });
   if (outgoing) {
-    log.debug('Outgoing response:', { outgoing });
+    log.debug('Outgoing response:', outgoing);
   }
 }
 
