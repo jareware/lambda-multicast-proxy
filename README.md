@@ -76,7 +76,15 @@ $ aws lambda update-function-configuration \
     --environment $(node -p 'require("./lambda-multicast-proxy-config")')
 ```
 
-## Acknowledgements
+# Releasing
+
+TODO
+
+## First time releasing?
+
+Create a [Personal access token](https://github.com/settings/tokens/new) for the GH API.
+
+# Acknowledgements
 
 Made with the loving support of the [Futurice Open Source sponsorship program](http://futurice.com/blog/sponsoring-free-time-open-source-activities).
 
