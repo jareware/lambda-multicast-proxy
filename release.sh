@@ -71,7 +71,7 @@ fi
 echo OK
 
 echo -n "Uploading release zipfile... "
-release_upload_result="$(curl -o /dev/null -w "%{http_code}" -s -n "$release_upload_url?name=$release_zipfile" -F "data=@$release_zipfile")"
+release_upload_result="$(curl -o /dev/null -w "%{http_code}" -s -n "$release_upload_url?name=$release_zipfile" --data-binary @"$release_zipfile" -H "Content-Type: application/octet-stream")"
 if [ "$release_upload_result" != "201" ]; then
   echo -e "ERROR\n\nRelease upload gave unexpected HTTP status: \"$release_upload_result\""
   exit 1
