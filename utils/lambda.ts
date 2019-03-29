@@ -52,6 +52,9 @@ export function responseToLambda(
         ? primary.data
         : JSON.stringify(primary.data),
     isBase64Encoded: false,
-    headers: filterHeaders(primary.headers, config.proxiedOutgoingHeaders),
+    headers: {
+      ...filterHeaders(primary.headers, config.proxiedOutgoingHeaders),
+      ...config.additionalOutgoingHeaders,
+    },
   };
 }
