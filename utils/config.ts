@@ -1,5 +1,6 @@
 import { LogLevel } from './logging';
 import { DEFAULT_TIMEOUT } from './proxy';
+import { Headers } from './lambda';
 
 export interface Config {
   logLevel: LogLevel | null;
@@ -12,6 +13,7 @@ export interface Config {
   };
   proxiedIncomingHeaders: string[];
   proxiedOutgoingHeaders: string[];
+  additionalOutgoingHeaders: Headers;
 }
 
 export function parseConfig(rawConfig: any): Config {
@@ -62,6 +64,16 @@ export function parseConfig(rawConfig: any): Config {
     )
       ? c.proxiedOutgoingHeaders
       : [];
+  const additionalOutgoingHeaders =
+    c &&
+    typeof c.additionalOutgoingHeaders === 'object' &&
+    Object.keys(c.additionalOutgoingHeaders).reduce(
+      (memo, next) =>
+        memo && typeof c.additionalOutgoingHeaders[next] === 'string',
+      true,
+    )
+      ? c.additionalOutgoingHeaders
+      : {};
   return {
     logLevel,
     papertrailHost,
@@ -71,5 +83,6 @@ export function parseConfig(rawConfig: any): Config {
     rewriteConfig,
     proxiedIncomingHeaders,
     proxiedOutgoingHeaders,
+    additionalOutgoingHeaders,
   };
 }

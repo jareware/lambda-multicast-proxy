@@ -15,6 +15,7 @@ describe('utils/config', () => {
         rewriteConfig: {},
         proxiedIncomingHeaders: [],
         proxiedOutgoingHeaders: [],
+        additionalOutgoingHeaders: {},
       });
     });
     it('keeps config when provided', () => {
@@ -30,6 +31,7 @@ describe('utils/config', () => {
           },
           proxiedIncomingHeaders: ['foo'],
           proxiedOutgoingHeaders: ['bar'],
+          additionalOutgoingHeaders: { baz: 'test' },
         }),
         {
           logLevel: 'debug',
@@ -42,6 +44,7 @@ describe('utils/config', () => {
           },
           proxiedIncomingHeaders: ['foo'],
           proxiedOutgoingHeaders: ['bar'],
+          additionalOutgoingHeaders: { baz: 'test' },
         },
       );
     });
@@ -57,6 +60,7 @@ describe('utils/config', () => {
           },
           proxiedIncomingHeaders: [123],
           proxiedOutgoingHeaders: false,
+          additionalOutgoingHeaders: 'asdf',
         }),
         {
           logLevel: 'debug',
@@ -67,6 +71,7 @@ describe('utils/config', () => {
           rewriteConfig: {},
           proxiedIncomingHeaders: [],
           proxiedOutgoingHeaders: [],
+          additionalOutgoingHeaders: {},
         },
       );
     });
@@ -87,6 +92,7 @@ describe('utils/config', () => {
           rewriteConfig: {},
           proxiedIncomingHeaders: ['foo'],
           proxiedOutgoingHeaders: [],
+          additionalOutgoingHeaders: {},
         },
       );
     });
