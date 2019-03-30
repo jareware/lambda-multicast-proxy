@@ -63,6 +63,16 @@ module.exports = JSON.stringify({
         'cache-control',
       ],
 
+      // These headers will be added to responses before sending them back to the client:
+      // (the ones listed in this example implement a liberal CORS policy; see e.g. https://enable-cors.org/server_nginx.html)
+      additionalOutgoingHeaders: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range',
+        'Access-Control-Expose-Headers': 'Content-Length,Content-Range',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+
     }),
   },
 });
