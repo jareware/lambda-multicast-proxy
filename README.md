@@ -88,7 +88,7 @@ $ aws lambda update-function-configuration \
 
 # Releasing
 
-TODO
+Please use the included `release.sh` script.
 
 ## First time releasing?
 
