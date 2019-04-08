@@ -14,6 +14,7 @@ export interface IncomingRequest {
   requestBody: object | string;
 }
 
+// @see https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format
 export interface LambdaResponse {
   statusCode: number;
   body?: string;
